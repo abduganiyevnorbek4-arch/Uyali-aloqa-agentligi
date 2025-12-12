@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uyali Aloqa Agentligi | Mobil aloqa xizmatlari</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Umumiy uslublar */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --gray: #7f8c8d;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Sarlavha va navigatsiya */
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .logo-icon {
+            font-size: 2rem;
+            color: var(--secondary);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        nav a:hover, nav a.active {
+            background-color: var(--secondary);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Asosiy kontent */
+        main {
+            min-height: calc(100vh - 200px);
+        }
+        
+        /* Sahifalar uchun umumiy uslublar */
+        .page {
+            display: none;
+            padding: 3rem 0;
+        }
+        
+        .page.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .page-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+        
+        .page-header h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .page-header p {
+            color: var(--gray);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+        
+        .footer-section p {
+            margin-bottom: 0.8rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+        
+        /* 1-sahifa: Bosh sahifa - Hero va Xizmatlar */
+        #home {
+            background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+        }
+        
+        .hero h2 {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            color: var(--gray);
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: 2px solid var(--secondary);
+        }
+        
+        .cta-button:hover {
+            background-color: transparent;
+            color: var(--secondary);
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .feature-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        /* 2-sahifa: Xizmatlar */
+        #services {
+            background-color: #f0f7ff;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .service-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover {
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .service-img {
+            height: 200px;
+            background-color: var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+        
+        .service-content {
+            padding: 1.5rem;
+        }
+        
+        .service-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+            color: var(--primary);
+        }
+        
+        /* 3-sahifa: Tariflar */
+        #pricing {
+            background-color: white;
+        }
+        
+        .pricing-plans {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .plan-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            width: 100%;
+            max-width: 350px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border: 2px solid #eee;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .plan-card:hover {
+            border-color: var(--secondary);
+            transform: translateY(-10px);
+        }
+        
+        .plan-card.popular {
+            border-color: var(--secondary);
+            transform: scale(1.05);
+        }
+        
+        .plan-card.popular::before {
+            content: "Tavsiya etiladi";
+            position: absolute;
+            top: 15px;
+            right: -30px;
+            background-color: var(--accent);
+            color: white;
+            padding: 5px 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transform: rotate(45deg);
+        }
+        
+        .plan-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .plan-name {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .plan-price {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            font-weight: 700;
+        }
+        
+        .plan-price span {
+            font-size: 1rem;
+            color: var(--gray);
+        }
+        
+        .plan-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+        
+        .plan-features li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .plan-features li i {
+            color: var(--secondary);
+            margin-right: 10px;
+        }
+        
+        .plan-button {
+            display: block;
+            text-align: center;
+            background-color: var(--secondary);
+            color: white;
+            padding: 12px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .plan-button:hover {
+            background-color: var(--primary);
+        }
+        
+        /* 4-sahifa: Biz haqimizda */
+        #about {
+            background-color: #f8f9fa;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .about-text h3 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .about-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .stat-item {
+            text-align: center;
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            color: var(--gray);
+            font-weight: 500;
+        }
+        
+        .about-image {
+            background-color: var(--secondary);
+            height: 400px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            box-shadow: 0 10px 30px rgba(52, 152, 219, 0.3);
+        }
+        
+        /* 5-sahifa: Aloqa */
+        #contact {
+            background-color: white;
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+        
+        .contact-info h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-details {
+            margin-top: 2rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background-color: #f0f7ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            color: var(--secondary);
+            font-size: 1.2rem;
+        }
+        
+        .contact-form {
+            background-color: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--primary);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border 0.3s ease;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--secondary);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .submit-btn:hover {
+            background-color: var(--primary);
+        }
+        
+        /* Mobil moslashtirish */
+        @media (max-width: 992px) {
+            .about-content, .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+            
+            .page-header h2 {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: var(--primary);
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .plan-card.popular {
+                transform: none;
+            }
+            
+            .header-container {
+                flex-wrap: wrap;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Sarlavha va navigatsiya -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-icon"><i class="fas fa-satellite-dish"></i></div>
+                <h1>Uyali<span>Aloqa</span></h1>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="#home" class="nav-link active" data-page="home">Bosh sahifa</a></li>
+                    <li><a href="#services" class="nav-link" data-page="services">Xizmatlar</a></li>
+                    <li><a href="#pricing" class="nav-link" data-page="pricing">Tariflar</a></li>
+                    <li><a href="#about" class="nav-link" data-page="about">Biz haqimizda</a></li>
+                    <li><a href="#contact" class="nav-link" data-page="contact">Aloqa</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Asosiy kontent -->
+    <main>
+        <!-- 1-sahifa: Bosh sahifa -->
+        <section id="home" class="page active">
+            <div class="container">
+                <div class="hero">
+                    <h2>Uyali aloqa xizmatlarining ishonchli agentligi</h2>
+                    <p>Biz sizga eng zamonaviy uyali aloqa xizmatlarini, tezkor internet va barcha mobil operatorlarning eng yaxshi tariflarini taklif etamiz. 10 yildan ortiq tajriba.</p>
+                    <a href="#contact" class="cta-button nav-link" data-page="contact">Hoziroq bog'laning</a>
+                </div>
+                
+                <div class="features">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3>Tezkor ulanish</h3>
+                        <p>5G texnologiyasi asosida rekord tezlikda internet aloqasi. Shaharning har bir nuqtasida barqaror signal.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Xavfsizlik kafolati</h3>
+                        <p>Maxfiy ma'lumotlaringizni himoya qiluvchi ilg'or xavfsizlik tizimlari. Har qanday tahlikdan himoya.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h3>24/7 qo'llab-quvvatlash</h3>
+                        <p>Kunduzi-kechasi sizga yordam berishga tayyor mutaxassislar. Har qanday masalada tez yechim.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 2-sahifa: Xizmatlar -->
+        <section id="services" class="page">
+            <div class="container">
+                <div class="page-header">
+                    <h2>Bizning Xizmatlar</h2>
+                    <p>Biz mijozlarimizga keng qamrovli uyali aloqa xizmatlarini taklif etamiz. Har bir xizmat sizning ehtiyojlaringizga moslashtirilgan.</p>
+                </div>
+                
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-img">
+                            <i class="fas fa-sim-card"></i>
+                        </div>
+                        <div class="service-content">
+                            <h3>SIM-karta xizmatlari</h3>
+                            <p>Barcha mobil operatorlarning SIM-kartalari, raqamni saqlab qolish, raqamni operatordan operatorga o'tkazish.</p>
+                            <p>Yangi avlod eSIM texnologiyasi ham mavjud.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-img">
+                            <i class="fas fa-wifi"></i>
+                        </div>
+                        <div class="service-content">
+                            <h3>Internet paketlar</h3>
+                            <p>Kunlik, oylik va yillik internet paketlari. Cheksiz internet imkoniyatlari. Tanishilar uchun maxsus tariflar.</p>
+                            <p>Tezkor 4G/5G tarmoqlarida ishlash.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-img">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div class="service-content">
+                            <h3>Qo'ng'iroq paketlari</h3>
+                            <p>Cheksiz qo'ng'iroqlar, xalqaro qo'ng'iroqlar uchun maxsus tariflar. Operator ichida va tarmoqlararo arzon qo'ng'iroqlar.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-img">
+                            <i class="fas fa-broadcast-tower"></i>
+                        </div>
+                        <div class="service-content">
+                            <h3>Tarmoq yechimlari</h3>
+                            <p>Korxonalar uchun maxsus aloqa yechimlari, VPN xizmatlari, bulutli telefon stansiyalari va boshqa biznes yechimlari.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-img">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <div class="service-content">
+                            <h3>Qurilma sotuvi</h3>
+                            <p>Eng so'nggi smartfonlar, modemlar, routerlar va boshqa aloqa qurilmalarini hamda ularga xizmat ko'rsatish.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-img">
+                            <i class="fas fa-hands-helping"></i>
+                        </div>
+                        <div class="service-content">
+                            <h3>Maslahat xizmati</h3>
+                            <p>Bepal texnik maslahat, tarifni optimallashtirish, tarmoq muammolarini hal qilish va boshqa konsultatsiya xizmatlari.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 3-sahifa: Tariflar -->
+        <section id="pricing" class="page">
+            <div class="container">
+                <div class="page-header">
+                    <h2>Tarif Rejalari</h2>
+                    <p>Har bir mijoz uchun mos keladigan tarif rejalari. O'zingizga eng maqbul variantni tanlang yoki biz sizga yordam beramiz.</p>
+                </div>
+                
+                <div class="pricing-plans">
+                    <div class="plan-card">
+                        <div class="plan-header">
+                            <h3 class="plan-name">Boshlang'ich</h3>
+                            <div class="plan-price">49 000 <span>so'm/oy</span></div>
+                        </div>
+                        
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check"></i> 10 GB internet</li>
+                            <li><i class="fas fa-check"></i> 500 daqiqa qo'ng'iroq</li>
+                            <li><i class="fas fa-check"></i> 500 SMS</li>
+                            <li><i class="fas fa-check"></i> 1 oy muddat</li>
+                            <li><i class="fas fa-check"></i> Asosiy qo'llab-quvvatlash</li>
+                        </ul>
+                        
+                        <a href="#contact" class="plan-button nav-link" data-page="contact">Tanlash</a>
+                    </div>
+                    
+                    <div class="plan-card popular">
+                        <div class="plan-header">
+                            <h3 class="plan-name">Standart</h3>
+                            <div class="plan-price">79 000 <span>so'm/oy</span></div>
+                        </div>
+                        
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check"></i> 30 GB internet</li>
+                            <li><i class="fas fa-check"></i> Cheksiz qo'ng'iroq</li>
+                            <li><i class="fas fa-check"></i> 1000 SMS</li>
+                            <li><i class="fas fa-check"></i> 3 oy muddat</li>
+                            <li><i class="fas fa-check"></i> Yuqori darajadagi qo'llab-quvvatlash</li>
+                        </ul>
+                        
+                        <a href="#contact" class="plan-button nav-link" data-page="contact">Tanlash</a>
+                    </div>
+                    
+                    <div class="plan-card">
+                        <div class="plan-header">
+                            <h3 class="plan-name">Premium</h3>
+                            <div class="plan-price">129 000 <span>so'm/oy</span></div>
+                        </div>
+                        
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check"></i> Cheksiz internet</li>
+                            <li><i class="fas fa-check"></i> Cheksiz qo'ng'iroq</li>
+                            <li><i class="fas fa-check"></i> Cheksiz SMS</li>
+                            <li><i class="fas fa-check"></i> 6 oy muddat</li>
+                            <li><i class="fas fa-check"></i> Shaxsiy menejer</li>
+                        </ul>
+                        
+                        <a href="#contact" class="plan-button nav-link" data-page="contact">Tanlash</a>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 3rem;">
+                    <p><strong>Eslatma:</strong> Barcha tariflar 1 oylik sinov muddati bilan ta'minlanadi. Korxonalar uchun maxsus tariflar mavjud.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 4-sahifa: Biz haqimizda -->
+        <section id="about" class="page">
+            <div class="container">
+                <div class="page-header">
+                    <h2>Biz Haqimizda</h2>
+                    <p>Uyali Aloqa Agentligi 2013-yildan beri faoliyat yuritib kelmoqda. Bizning maqsadimiz - har bir mijozga sifatli va arzon aloqa xizmatlarini taqdim etish.</p>
+                </div>
+                
+                <div class="about-content">
+                    <div class="about-text">
+                        <h3>10 yildan ortiq tajriba</h3>
+                        <p>Biz o'z faoliyatimiz davomida minglab mijozlarga uyali aloqa xizmatlari bo'yicha yordam berib kelmoqdamiz. Har bir mijozning ehtiyojlariga individual yondashuv - bizning asosiy tamoyilimiz.</p>
+                        <p>Biz barcha yirik mobil operatorlar (Uzmobile, Beeline, Ucell, Mobiuz) bilan hamkorlik qilamiz va eng yaxshi shartlarda xizmat ko'rsatamiz.</p>
+                        <p>Bizning jamoamiz yuqori malakali mutaxassislardan iborat bo'lib, ular doimiy ravishda yangi texnologiyalar va xizmatlar bo'yicha malaka oshirib borishadi.</p>
+                        
+                        <div class="about-stats">
+                            <div class="stat-item">
+                                <div class="stat-number">10+</div>
+                                <div class="stat-label">Yil tajriba</div>
+                            </div>
+                            
+                            <div class="stat-item">
+                                <div class="stat-number">15,000+</div>
+                                <div class="stat-label">Mamnun mijoz</div>
+                            </div>
+                            
+                            <div class="stat-item">
+                                <div class="stat-number">4</div>
+                                <div class="stat-label">Hamkor operator</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="about-image">
+                        <div style="text-align: center; padding: 2rem;">
+                            <i class="fas fa-users" style="font-size: 4rem; margin-bottom: 1rem;"></i>
+                            <h3>Bizning Jamoa</h3>
+                            <p>30+ mutaxassis</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 5-sahifa: Aloqa -->
+        <section id="contact" class="page">
+            <div class="container">
+                <div class="page-header">
+                    <h2>Biz bilan Aloqa</h2>
+                    <p>Savollaringiz bo'lsa yoki xizmatlarimizdan foydalanmoqchi bo'lsangiz, quyidagi ma'lumotlar orqali biz bilan bog'lanishingiz mumkin.</p>
+                </div>
+                
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <h3>Ma'lumotlarimiz</h3>
+                        <p>Bizga qo'ng'iroq qiling, elektron pochta orqali yozing yoki ofisimizga tashrif buyuring. Sizga yordam berishdan mamnun bo'lamiz.</p>
+                        
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <h4>Manzil</h4>
+                                    <p>Toshkent sh., Yunusobod t., 7-mavze, 12-uy</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div>
+                                    <h4>Telefon</h4>
+                                    <p>+998 71 123 45 67</p>
+                                    <p>+998 90 123 45 67</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h4>Elektron pochta</h4>
+                                    <p>info@uyalialoqa.uz</p>
+                                    <p>support@uyalialoqa.uz</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div>
+                                    <h4>Ish vaqti</h4>
+                                    <p>Dushanba - Juma: 9:00 - 18:00</p>
+                                    <p>Shanba: 9:00 - 16:00</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-form">
+                        <h3>Xabar qoldiring</h3>
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <label for="name">Ismingiz</label>
+                                <input type="text" id="name" class="form-control" placeholder="Ismingizni kiriting" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="phone">Telefon raqamingiz</label>
+                                <input type="tel" id="phone" class="form-control" placeholder="+998 XX XXX XX XX" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Elektron pochta</label>
+                                <input type="email" id="email" class="form-control" placeholder="email@example.com" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="subject">Mavzu</label>
+                                <select id="subject" class="form-control" required>
+                                    <option value="">Mavzuni tanlang</option>
+                                    <option value="tarif">Tarif rejalari</option>
+                                    <option value="sim">SIM-karta xizmati</option>
+                                    <option value="internet">Internet paketlar</option>
+                                    <option value="biznes">Biznes yechimlar</option>
+                                    <option value="boshqa">Boshqa</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message">Xabaringiz</label>
+                                <textarea id="message" class="form-control" placeholder="Xabaringizni kiriting..." required></textarea>
+                            </div>
+                            
+                            <button type="submit" class="submit-btn">Xabar yuborish</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Uyali Aloqa</h3>
+                    <p>Uyali aloqa xizmatlarining ishonchli agentligi. 10 yildan ortiq tajriba.</p>
+                    <p>Biz sizga eng zamonaviy va qulay aloqa yechimlarini taklif etamiz.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Tez havolalar</h3>
+                    <p><a href="#home" class="nav-link" data-page="home" style="color: white;">Bosh sahifa</a></p>
+                    <p><a href="#services" class="nav-link" data-page="services" style="color: white;">Xizmatlar</a></p>
+                    <p><a href="#pricing" class="nav-link" data-page="pricing" style="color: white;">Tariflar</a></p>
+                    <p><a href="#about" class="nav-link" data-page="about" style="color: white;">Biz haqimizda</a></p>
+                    <p><a href="#contact" class="nav-link" data-page="contact" style="color: white;">Aloqa</a></p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Biz bilan bog'laning</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Toshkent sh., Yunusobod t., 7-mavze, 12-uy</p>
+                    <p><i class="fas fa-phone"></i> +998 71 123 45 67</p>
+                    <p><i class="fas fa-envelope"></i> info@uyalialoqa.uz</p>
+                    
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2023 Uyali Aloqa Agentligi. Barcha huquqlar himoyalangan.
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Sahifalar o'rtasida navigatsiya
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const pages = document.querySelectorAll('.page');
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const navMenu = document.getElementById('navMenu');
+            
+            // Sahifalarni almashtirish funksiyasi
+            function showPage(pageId) {
+                // Barcha sahifalarni yashirish
+                pages.forEach(page => {
+                    page.classList.remove('active');
+                });
+                
+                // Barcha navigatsiya havolalaridan active klassini olib tashlash
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                });
+                
+                // Tanlangan sahifani ko'rsatish
+                document.getElementById(pageId).classList.add('active');
+                
+                // Tanlangan havolaga active klassini qo'shish
+                document.querySelector(`.nav-link[data-page="${pageId}"]`).classList.add('active');
+                
+                // Mobil menyuni yopish
+                if (navMenu.classList.contains('show')) {
+                    navMenu.classList.remove('show');
+                }
+            }
+            
+            // Havolalarga click hodisasi qo'shish
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const pageId = this.getAttribute('data-page');
+                    showPage(pageId);
+                    
+                    // Sahifa boshiga smooth scroll qilish
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // Mobil menyuni ochish/yopish
+            mobileMenuBtn.addEventListener('click', function() {
+                navMenu.classList.toggle('show');
+            });
+            
+            // Aloqa formasi uchun
+            const contactForm = document.getElementById('contactForm');
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Oddiy formani yuborish simulatsiyasi
+                const name = document.getElementById('name').value;
+                const phone = document.getElementById('phone').value;
+                
+                alert(`Hurmatli ${name}, so'rovingiz qabul qilindi! Tez orada ${phone} raqamingizga aloqaga chiqamiz.`);
+                contactForm.reset();
+            });
+            
+            // Dastlabki sahifani ko'rsatish
+            showPage('home');
+        });
+    </script>
+</body>
+</html>
